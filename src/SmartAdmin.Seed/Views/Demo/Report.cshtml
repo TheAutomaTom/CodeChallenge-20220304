@@ -1,0 +1,60 @@
+@model SmartAdmin.Seed.Models.DemoViewModels.ReportViewModel
+@section scripts{
+<script type="text/javascript">	
+		const ctx = document.getElementById('myChart').getContext('2d');
+		var _cities = [];
+		var _minimums = [];
+		var _actuals = [];
+		var _maximums = [];
+		@foreach (var forecast in Model.Forecasts)
+    {
+				@:_cities.push("@forecast.CityName");
+				@:_minimums.push("@forecast.Main.Temprature_min");
+				@:_actuals.push("@forecast.Main.Temprature");
+				@:_maximums.push("@forecast.Main.Temprature_max");
+		}
+
+		const myChart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+						labels: _cities,
+						datasets: [{
+								label: 'Minimum',
+								labelColor:'rgba(255, 99, 132, 0.2)',
+								data: _minimums,
+								backgroundColor: '#54B7FF'
+						},{
+								label: 'Current',
+								data: _actuals,
+								backgroundColor: '#FFE175'
+						},{
+								label: 'Maximum',
+								data: _maximums,
+								backgroundColor: '#FF6384'
+						}
+
+						]//End datasets
+				},
+				options: {
+						responsive: true,
+						scales: {
+							x: {
+								stacked: true
+							},
+							y: {
+								stacked: true,
+								beginAtZero: true
+							}
+						},
+						title: {
+								display: true,
+								text: 'Tempratures'
+						}
+				}
+		});
+</script>
+} @*End scripts section*@
+
+<div style="width: 80%; height: auto;">
+		<canvas id="myChart"></canvas>
+</div>
