@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartAdmin.Seed.Configuration;
 using SmartAdmin.Seed.Data;
+using SmartAdmin.Seed.Data.Repositories;
+using SmartAdmin.Seed.Data.Repositories.Interfaces;
 using SmartAdmin.Seed.Models;
 using SmartAdmin.Seed.Services;
 
@@ -68,6 +70,8 @@ namespace SmartAdmin.Seed
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IWeatherForecastRepository, WeatherForecastRepository>();
+            services.AddTransient<RoleManager<IdentityRole>>();
 
             // Cache 200 (OK) server responses; any other responses, including error pages, are ignored.
             services.AddResponseCaching();
