@@ -42,6 +42,7 @@ namespace SmartAdmin.Seed
 
             // Bind the settings instance as a singleton and expose it as an options type (IOptions<SmartSettings>)
             services.Configure<SmartSettings>(_configuration.GetSection("SmartAdmin"));
+            services.Configure<OpenWeatherMapSettings>(_configuration.GetSection("OpenWeatherMap"));
 
             // We retrieve the current bound AppSettings instance in order to access the connection string
             // Note: While this does performs a model binding to the type, it does not modify the service collection
