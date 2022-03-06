@@ -1,5 +1,6 @@
 #region Using
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using SmartAdmin.Seed.Configuration;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace SmartAdmin.Seed.Controllers
 {
+    [Authorize(Roles = "ReportViewers")]
     [Route("[controller]/[action]")]    
     public class DemoController : Controller
     {
