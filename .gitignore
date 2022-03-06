@@ -45,3 +45,4 @@ nuget.exe
 *.7z
 *.txt
 *.pdf
+src/SmartAdmin.Seed/appsettings.json
