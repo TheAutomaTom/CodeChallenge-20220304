@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartAdmin.Seed.Configuration;
 using SmartAdmin.Seed.Data;
+using SmartAdmin.Seed.Data.Repositories;
+using SmartAdmin.Seed.Data.Repositories.Interfaces;
 using SmartAdmin.Seed.Models;
 using SmartAdmin.Seed.Services;
 
@@ -42,6 +44,7 @@ namespace SmartAdmin.Seed
 
             // Bind the settings instance as a singleton and expose it as an options type (IOptions<SmartSettings>)
             services.Configure<SmartSettings>(_configuration.GetSection("SmartAdmin"));
+            services.Configure<OpenWeatherMapSettings>(_configuration.GetSection("OpenWeatherMap"));
 
             // We retrieve the current bound AppSettings instance in order to access the connection string
             // Note: While this does performs a model binding to the type, it does not modify the service collection
@@ -67,6 +70,8 @@ namespace SmartAdmin.Seed
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IWeatherForecastRepository, WeatherForecastRepository>();
+            services.AddTransient<RoleManager<IdentityRole>>();
 
             // Cache 200 (OK) server responses; any other responses, including error pages, are ignored.
             services.AddResponseCaching();
