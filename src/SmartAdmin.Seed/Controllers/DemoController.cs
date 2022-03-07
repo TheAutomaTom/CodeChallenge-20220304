@@ -27,7 +27,7 @@ namespace SmartAdmin.Seed.Controllers
             _weatherReportConfig = config.Value;
         }
 
-        public async Task<IActionResult> GetForecasts()
+        public async Task<IActionResult> Report()
         {
             var forecasts = new List<OpenWeatherDto>();
 
